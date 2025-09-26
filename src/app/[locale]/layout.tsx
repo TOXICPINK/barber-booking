@@ -1,23 +1,34 @@
-import type {Metadata} from 'next';
-import {NextIntlClientProvider} from 'next-intl';
-import {notFound} from 'next/navigation';
-import {getMessages} from 'next-intl/server';
-import {isRTL, type Locale} from '@/i18n';
-import '../globals.css';
+import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
+import { getMessages } from "next-intl/server";
+import { isRTL, type Locale } from "@/i18n";
+import "../globals.css";
 
 export const metadata: Metadata = {
-  title: 'Barbershop Booking',
-  description: 'Online barbershop booking system'
+  title: "نوبت‌دهی آرایشگاه",
+  description: "سیستم رزرو آنلاین برای آرایشگاه",
 };
 
 export default async function LocaleLayout({
-  children, params
-}: {children: React.ReactNode; params: {locale: Locale}}) {
-  const {locale} = params;
+  children,
+  params,
+}: Readonly<{
+  children: React.ReactNode;
+  // ✅ در Next.js 15 پارامتر params یک Promise است
+  params: Promise<{ locale: Locale }>;
+}>) {
+  const { locale } = await params; // ← await ضروری است
+
   let messages;
-  try { messages = await getMessages(); } catch { notFound(); }
+  try {
+    messages = await getMessages();
+  } catch {
+    notFound();
+  }
+
   return (
-    <html lang={locale} dir={isRTL(locale) ? 'rtl' : 'ltr'}>
+    <html lang={locale} dir={isRTL(locale) ? "rtl" : "ltr"}>
       <body>
         <NextIntlClientProvider messages={messages}>
           {children}
