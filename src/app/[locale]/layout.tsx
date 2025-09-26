@@ -10,21 +10,19 @@ export const metadata: Metadata = {
   description: "سیستم رزرو آنلاین برای آرایشگاه",
 };
 
-/** ✅ به Next.js بگو کدام localeها را از قبل بسازد */
 export function generateStaticParams() {
-  return [{ locale: "fa" }, { locale: "en" }];
+  return [{ locale: "fa" }];
 }
-export const dynamicParams = false; // ← اضافه شود
+export const dynamicParams = false;
 
 export default async function LocaleLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode;
-  // ✅ در Next.js 15 پارامتر params یک Promise است
   params: Promise<{ locale: Locale }>;
 }>) {
-  const { locale } = await params; // ← await ضروری است
+  const { locale } = await params;
 
   let messages;
   try {

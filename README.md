@@ -1,16 +1,12 @@
-# Barbershop Booking (Next.js + Tailwind + next-intl)
+# نوبت‌دهی آرایشگاه (فقط فارسی)
 
-- Next.js (App Router)
+- Next.js 15 (App Router)
 - TailwindCSS
-- **next-intl** with `/fa` and `/en` locales
-- RTL support for Persian (fa) and language switcher on the homepage
+- next-intl (فقط fa)
+- middleware برای ریدایرکت `/` به `/fa`
 
-## Scripts
+## اجرای محلی
 ```bash
-npm run dev     # start dev server
-npm run build   # build
-npm start       # start production server
+npm install
+npm run dev
 ```
-
-## Deploy
-Push to GitHub (main) → Vercel will auto-deploy.
