@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
-import { getMessages } from "next-intl/server";
 import { isRTL, type Locale } from "@/i18n";
 import "../globals.css";
 
@@ -10,6 +9,7 @@ export const metadata: Metadata = {
   description: "سیستم رزرو آنلاین برای آرایشگاه",
 };
 
+// فقط فارسی را به صورت استاتیک می‌سازیم
 export function generateStaticParams() {
   return [{ locale: "fa" }];
 }
@@ -24,9 +24,10 @@ export default async function LocaleLayout({
 }>) {
   const { locale } = await params;
 
-  let messages;
+  // ✅ پیام‌ها را مستقیم از فایل JSON بارگذاری می‌کنیم
+  let messages: Record<string, string>;
   try {
-    messages = await getMessages();
+    messages = (await import(`../../../messages/${locale}.json`)).default;
   } catch {
     notFound();
   }
