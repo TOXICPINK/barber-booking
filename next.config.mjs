@@ -1,8 +1,7 @@
 // next.config.mjs
-import createNextIntlPlugin from 'next-intl/plugin';
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // اینجا هر تنظیم دیگری خواستی می‌تونی اضافه کنی
+};
 
-const withNextIntl = createNextIntlPlugin();
-
-export default withNextIntl({
-  // تنظیمات دلخواه Next.js اگر لازم بود
-});
+export default nextConfig;
