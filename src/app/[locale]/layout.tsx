@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 export function generateStaticParams() {
   return [{ locale: "fa" }, { locale: "en" }];
 }
+export const dynamicParams = false; // ← اضافه شود
 
 export default async function LocaleLayout({
   children,
