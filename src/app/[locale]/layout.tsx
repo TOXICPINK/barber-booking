@@ -10,6 +10,11 @@ export const metadata: Metadata = {
   description: "سیستم رزرو آنلاین برای آرایشگاه",
 };
 
+/** ✅ به Next.js بگو کدام localeها را از قبل بسازد */
+export function generateStaticParams() {
+  return [{ locale: "fa" }, { locale: "en" }];
+}
+
 export default async function LocaleLayout({
   children,
   params,
