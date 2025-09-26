@@ -1,7 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    // appDir is enabled by default in Next 13+
-  }
-};
-export default nextConfig;
+// next.config.mjs
+import createNextIntlPlugin from 'next-intl/plugin';
+
+const withNextIntl = createNextIntlPlugin();
+
+export default withNextIntl({
+  // تنظیمات دلخواه Next.js اگر لازم بود
+});
